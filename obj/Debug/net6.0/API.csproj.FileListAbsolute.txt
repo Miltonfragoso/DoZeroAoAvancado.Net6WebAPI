@@ -25,3 +25,4 @@ C:\Projetos no Git\API\obj\Debug\net6.0\refint\API.dll
 C:\Projetos no Git\API\obj\Debug\net6.0\API.pdb
 C:\Projetos no Git\API\obj\Debug\net6.0\API.genruntimeconfig.cache
 C:\Projetos no Git\API\obj\Debug\net6.0\ref\API.dll
+C:\Projetos no Git\API\obj\Debug\net6.0\API.sourcelink.json

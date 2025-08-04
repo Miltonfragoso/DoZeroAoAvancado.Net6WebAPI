@@ -32,7 +32,7 @@ app.MapGet("/AddHeader", (HttpResponse response) =>
 //para prencher e a classe Product
 app.MapPost("/saveproduct", (Product product) =>
 {
-    return product.Code + " - " + product.Nome;
+    ProductRepository.Add(product);
 });
 
 //Parâmetro pela Url para obter uma informação da minha URL por meio de parâmetros podemos fazer isso
@@ -46,7 +46,8 @@ app.MapGet("/getproduct", ([FromQuery] string dateStart, [FromQuery] string date
 //RoutParâmetro api.app.com/user/{code} aqui passamos parâmetros atraves da rota
 app.MapGet("/getproduct/{code}", ([FromRoute]  string code) =>
 {
-    return code;
+    var product = ProductRepository.GetBy(code);
+    return product;
 });
 
 
@@ -62,6 +63,24 @@ app.MapGet("/getproductbyheader", (HttpRequest request) =>
 //rodar aplicação
 app.Run();
 
+
+//Classe para simular um banco de dados
+public static class ProductRepository
+{
+    public static List<Product> Products { get; set; }
+
+    public static void Add(Product product)
+    {
+        //Se product estiver vazio inicializr(criar de facto a lista para ser usada)
+        if (Products == null) Products = new List<Product>();
+            Products.Add(product);
+    }
+
+    public static Product GetBy(string code)
+    {
+        return Products.FirstOrDefault(p => p.Code == code);
+    }
+}
 
 public class Product
 {
